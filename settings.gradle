@@ -1,0 +1,3 @@
+include ':loggingLibrary'
+include ':app'
+rootProject.name = "Baseproject"

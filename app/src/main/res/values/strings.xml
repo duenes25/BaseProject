@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Baseproject</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wifi_is_connected">WIFI is connected</string>
+    <string name="wifi_not_connected">WIFI is NOT connected</string>
+</resources>
