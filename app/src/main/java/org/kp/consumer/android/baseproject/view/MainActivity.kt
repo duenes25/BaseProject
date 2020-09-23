@@ -19,6 +19,7 @@ import org.kp.consumer.android.baseproject.MyAdapter
 import org.kp.consumer.android.baseproject.R
 import org.kp.consumer.android.baseproject.model.BaseItem
 import org.kp.consumer.android.baseproject.viewmodel.NetworkViewModel
+import org.kp.consumer.android.logginglibrary.logIt
 
 
 class MainActivity : AppCompatActivity() {
@@ -77,12 +78,7 @@ class MainActivity : AppCompatActivity() {
             networkFragment = NetworkFragment.newInstance()
         }
 
-
-
-/*
-
-
- */
+        logIt()
 
     }
 
