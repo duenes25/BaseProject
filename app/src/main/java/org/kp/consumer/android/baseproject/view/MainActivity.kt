@@ -15,8 +15,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.kp.consumer.android.baseproject.MyAdapter
 import org.kp.consumer.android.baseproject.R
+import org.kp.consumer.android.baseproject.db.AppDatabase
 import org.kp.consumer.android.baseproject.model.BaseItem
 import org.kp.consumer.android.baseproject.viewmodel.NetworkViewModel
 import org.kp.consumer.android.logginglibrary.logIt
@@ -31,31 +35,44 @@ class MainActivity : AppCompatActivity() {
 
     private val itemsList = arrayOf(
         BaseItem(
+            0,
             "Raising Arizona",
             "1987"
         ),
         BaseItem(
+            1,
             "Vampire's Kiss",
             "1988"
         ),
-        BaseItem("Con Air", "1997"),
         BaseItem(
+            2,
+            "Con Air",
+            "1997"),
+        BaseItem(
+            3,
             "Gone in 60 Seconds",
             "1997"
         ),
         BaseItem(
+            4,
             "National Treasure",
             "2004"
         ),
         BaseItem(
+            5,
             "The Wicker Man",
             "2006"
         ),
         BaseItem(
+            6,
             "Ghost Rider",
             "2007"
         ),
-        BaseItem("Knowing", "2009")
+        BaseItem(
+            7,
+            "Knowing",
+            "2009"
+        )
     )
 
     private lateinit var networkFragment: NetworkFragment
@@ -63,6 +80,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val db = AppDatabase(this)
+
+        GlobalScope.launch {
+            db.baseItemDao().insertAll(*itemsList)
+        }
+
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = MyAdapter(itemsList)
