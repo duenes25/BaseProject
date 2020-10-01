@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var networkViewModel:NetworkViewModel
 
+    // Holds the lits of items statically for the RecyclerVew
     private val itemsList = arrayOf(
         BaseItem(
             0,
@@ -77,6 +78,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var networkFragment: NetworkFragment
 
+    /**
+     * This is the onCreate Method
+     *
+     * @param savedInstanceState Any [Bundle]
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -106,6 +112,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Sets up the observers
+     *
+     * @param None
+     * @return None
+     */
     fun observeViewModels(){
         networkViewModel = ViewModelProvider(this).get(NetworkViewModel::class.java)
         networkViewModel.isConnectedtoWifi.observe(this, Observer {

@@ -63,3 +63,29 @@
                     println(it)  
                 }  
     }  
+
+
+## Added DOKKA  
+1. configure module gradle file
+    dependencies {  
+    ...  
+    classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+    
+2. Configure app gradle file  
+    apply plugin: 'org.jetbrains.dokka'  
+    ...  
+    dokka {  
+        outputFormat = 'html' // use 'javadoc' to get standard java docs  
+        outputDirectory = "$buildDir/javadoc"  
+        configuration {  
+            includeNonPublic = false  
+            skipEmptyPackages = true  
+            skipDeprecated = true  
+            reportUndocumented = true  
+            jdkVersion = 8  
+        }  
+    }  
+
+3. Add your documentation  
+4. manually trigger  
+    ./gradlew dokka
